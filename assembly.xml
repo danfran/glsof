@@ -1,0 +1,29 @@
+<assembly>
+    <id>jar-with-dependencies</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <unpack>true</unpack>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <excludes>
+                <exclude>src/**</exclude>
+                <exclude>test/**</exclude>
+                <exclude>target/**</exclude>
+                <exclude>.settings/**</exclude>
+                <exclude>META-INF/maven/**</exclude>
+                <exclude>pom.xml</exclude>
+                <exclude>.project</exclude>
+                <exclude>.classpath</exclude>
+                <exclude>doc/${artifactId}.doc</exclude>
+                <exclude>${artifactId}.iml</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+</assembly>
