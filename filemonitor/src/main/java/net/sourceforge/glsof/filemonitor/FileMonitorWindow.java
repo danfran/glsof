@@ -58,7 +58,7 @@ public class FileMonitorWindow extends AbstractMainWindow implements Observer {
 
     @Override
     protected String version() {
-        return "2.4.0";
+        return "2.4.1";
     }
 
     public static void main(String[] args) {
@@ -85,6 +85,7 @@ public class FileMonitorWindow extends AbstractMainWindow implements Observer {
     protected void createContents(JPanel mainContainer) {
 
         final FileMonitorUIConf uiConf = _uiConfRepository.read();
+        _preferencesRepository.load(uiConf.getSelectedPreference());
 
         final MonitorTable monitorTable = new MonitorTable(_preferencesRepository);
         final PreferencesTable preferencesTable = new PreferencesTable(monitorTable, _preferencesRepository);

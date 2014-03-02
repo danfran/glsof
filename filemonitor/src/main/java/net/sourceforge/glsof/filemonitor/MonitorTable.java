@@ -22,6 +22,8 @@ import net.sourceforge.glsof.filemonitor.thread.LocalMonitorTableUpdater;
 import net.sourceforge.glsof.filemonitor.thread.RemoteMonitorTableUpdater;
 
 import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -80,7 +82,7 @@ public class MonitorTable extends BasicTable implements Observer {
             private void showPopup(MouseEvent e) {
                 if (e.isPopupTrigger()) {
                     JPopupMenu menu = new JPopupMenu();
-                    columns(menu);
+                    createColumnsMenuContent(menu);
                     menu.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
@@ -96,16 +98,29 @@ public class MonitorTable extends BasicTable implements Observer {
         return tablePanel;
     }
 
-    private void columns(JPopupMenu columns) {
+    private static class CheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
+
+        @Override
+        protected void doClick(MenuSelectionManager msm) {
+            menuItem.doClick(0);
+        }
+
+        public static ComponentUI createUI(JComponent c) {
+            return new CheckBoxMenuItemUI();
+        }
+    }
+
+    private void createColumnsMenuContent(JPopupMenu columns) {
+        if (getCurrentPreferences() == null) return;
         final List<Boolean> views = getColumns();
         for (int i = 0; i < COLUMN_NAMES.length - 1; i++) {
             final JCheckBoxMenuItem item = new JCheckBoxMenuItem(COLUMN_NAMES[i]);
+            item.setUI(new CheckBoxMenuItemUI());
             columns.add(item);
             item.setSelected(views.get(i));
             final int index = i;
             item.addActionListener(new ActionListener() {
                 final int _index = index;
-
                 public void actionPerformed(ActionEvent e) {
                     views.set(_index, item.isSelected());
                     showColumn(views.get(index), index);

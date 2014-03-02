@@ -40,8 +40,6 @@ class PreferencesTable extends JTable implements Observer {
 
         final String selectedPreference = getUiConf().getSelectedPreference();
 
-        repository.load(selectedPreference);
-
         _toolBar = new PreferencesToolBar();
 
         setModel(new PreferencesTableModel(repository.findAllNames(), selectedPreference));
