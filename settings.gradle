@@ -1,0 +1,1 @@
+include 'queries', 'filemonitor', 'remote-lsof', 'common', 'filemonitor-cukes'

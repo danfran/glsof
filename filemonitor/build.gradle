@@ -1,0 +1,21 @@
+apply plugin: 'shadow'
+sourceCompatibility = 1.7
+version = '2.4.2'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.sourceforge.glsof.filemonitor.FileMonitorWindow', 'Implementation-Title': 'Filemonitor', 'Implementation-Version': version
+    }
+}
+
+dependencies {
+    compile group:'com.google.guava', name:'guava', version:'14.0.1'
+    compile project(':common')
+}
+
+shadow {
+    artifactAttached = false
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+}

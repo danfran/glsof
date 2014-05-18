@@ -14,7 +14,7 @@
    along with Glsof.  If not, see <http://www.gnu.org/licenses/>. */
 package net.sourceforge.glsof.queries.thread;
 
-import net.sourceforge.glsof.common.utils.GBCBuilder;
+import net.sourceforge.glsof.common.utils.GBC;
 
 import javax.swing.*;
 import javax.swing.text.DefaultStyledDocument;
@@ -51,7 +51,7 @@ public class Logger {
     }
 
     private GridBagConstraints createConstraints(final int x, final int y, final int fill) {
-        return new GBCBuilder().gridx(x).gridy(y).fill(fill).insets(new Insets(5, 5, 5, 5)).build();
+        return new GBC().gridx(x).gridy(y).fill(fill).insets(new Insets(5, 5, 5, 5)).get();
     }
 
     private JScrollPane createLogger() {
